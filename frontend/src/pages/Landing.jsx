@@ -88,7 +88,7 @@ export default function Landing() {
               disabled={loading}
               className="px-8 py-4 bg-gsite-accent hover:bg-gsite-accentHover text-white font-display font-bold text-lg rounded-xl transition-all glow-red disabled:opacity-50"
             >
-              {loading ? "Setting up..." : "Register Now"}
+              {loading ? "Setting up..." : "Create Your Tournament"}
             </button>
             <button
               onClick={() => navigate("/tournaments")}

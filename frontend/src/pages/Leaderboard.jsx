@@ -54,9 +54,7 @@ export default function Leaderboard() {
   const completedMatches = matches.filter((m) => m.results?.length > 0).length;
 
   const rankColors = {
-    1: { text: "text-gsite-gold", border: "border-gsite-gold/50", bg: "bg-gsite-gold/5" },
-    2: { text: "text-gray-300", border: "border-gray-400/40", bg: "bg-gray-400/5" },
-    3: { text: "text-amber-500", border: "border-amber-600/40", bg: "bg-amber-600/5" },
+    1: { text: "text-gsite-accent", border: "border-gsite-accent/50", bg: "bg-gsite-accent/5" },
   };
 
   const renderRow = (entry) => {
@@ -72,7 +70,7 @@ export default function Leaderboard() {
         key={entry.team_id}
         className={`flex items-center justify-between px-5 py-3 rounded-xl border transition-all ${
           style.border
-        } ${style.bg} ${isFirst ? "glow-gold" : "hover:bg-white/[0.02]"} ${
+        } ${style.bg} ${isFirst ? "glow-red" : "hover:bg-white/[0.02]"} ${
           entry.has_disputed ? "disputed" : ""
         }`}
       >
