@@ -9,9 +9,9 @@
 }
 
 body {
-  background-color: #000000;
-  color: #e2e2e2;
-  font-family: "Montserrat", sans-serif;
+  background-color: #0b0e17;
+  color: #e2e8f0;
+  font-family: "Inter", sans-serif;
   min-height: 100vh;
 }
 
@@ -20,24 +20,24 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #161616;
+  background: #111827;
 }
 ::-webkit-scrollbar-thumb {
-  background: #3a3a3a;
+  background: #374151;
   border-radius: 3px;
 }
 
-/* Glowing accent effects — subtle white/gray glow */
+/* Glowing accent effects */
 .glow-red {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15), 0 0 60px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 20px rgba(244, 63, 94, 0.3), 0 0 60px rgba(244, 63, 94, 0.1);
 }
 
 .glow-cyan {
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 60px rgba(255, 255, 255, 0.03);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), 0 0 60px rgba(6, 182, 212, 0.1);
 }
 
 .glow-gold {
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.4);
 }
 
 /* Animated gradient border */
@@ -50,7 +50,7 @@ body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #ffffff, #696969, #ffffff);
+  background: linear-gradient(135deg, #f43f5e, #06b6d4, #f43f5e);
   background-size: 300% 300%;
   animation: borderGlow 4s ease infinite;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -73,9 +73,9 @@ body {
   50% { opacity: 0.4; }
 }
 
-/* Rank badge shimmer — white/silver */
+/* Rank badge shimmer */
 .shimmer-gold {
-  background: linear-gradient(110deg, #ffffff 0%, #c6c6c6 45%, #ffffff 55%, #969696 100%);
+  background: linear-gradient(110deg, #fbbf24 0%, #fef3c7 45%, #fbbf24 55%, #f59e0b 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -87,7 +87,7 @@ body {
   100% { background-position: -200% 0; }
 }
 
-/* Scanline overlay */
+/* Scanline overlay for gaming feel */
 .scanlines::after {
   content: "";
   position: absolute;
@@ -96,8 +96,8 @@ body {
     0deg,
     transparent,
     transparent 2px,
-    rgba(255, 255, 255, 0.01) 2px,
-    rgba(255, 255, 255, 0.01) 4px
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
   );
   pointer-events: none;
 }
@@ -116,8 +116,8 @@ body {
 
 /* Disputed result styling */
 .disputed {
-  border-left: 3px solid #ffffff;
-  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid #f43f5e;
+  background: rgba(244, 63, 94, 0.05);
 }
 
 /* Table row hover */
@@ -125,6 +125,6 @@ body {
   transition: all 0.2s ease;
 }
 .table-row-hover:hover {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(6, 182, 212, 0.08);
   transform: translateX(2px);
 }

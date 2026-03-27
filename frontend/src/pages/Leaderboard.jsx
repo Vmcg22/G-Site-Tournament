@@ -54,9 +54,9 @@ export default function Leaderboard() {
   const completedMatches = matches.filter((m) => m.results?.length > 0).length;
 
   const rankColors = {
-    1: { text: "text-white", border: "border-white/50", bg: "bg-white/5" },
-    2: { text: "text-gray-300", border: "border-gray-400/30", bg: "bg-gray-400/5" },
-    3: { text: "text-gray-500", border: "border-gray-500/30", bg: "bg-gray-500/5" },
+    1: { text: "text-gsite-gold", border: "border-gsite-gold/50", bg: "bg-gsite-gold/5" },
+    2: { text: "text-gray-300", border: "border-gray-400/40", bg: "bg-gray-400/5" },
+    3: { text: "text-amber-500", border: "border-amber-600/40", bg: "bg-amber-600/5" },
   };
 
   const renderRow = (entry) => {
@@ -122,7 +122,7 @@ export default function Leaderboard() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Top accent bar */}
-      <div className="h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+      <div className="h-1 bg-gradient-to-r from-gsite-accent via-gsite-cyan to-gsite-accent" />
 
       {/* Header */}
       <div className="text-center pt-10 pb-8 px-6 relative">
@@ -202,7 +202,7 @@ export default function Leaderboard() {
       </div>
 
       {/* Bottom bar */}
-      <div className="h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+      <div className="h-1 bg-gradient-to-r from-gsite-accent via-gsite-cyan to-gsite-accent" />
     </div>
   );
 }
