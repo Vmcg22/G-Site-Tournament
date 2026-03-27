@@ -64,6 +64,20 @@ async def get_tournament(tournament_id: uuid.UUID, db: AsyncSession = Depends(ge
     return tournament
 
 
+@app.put("/api/tournaments/{tournament_id}", response_model=TournamentOut)
+async def update_tournament(tournament_id: uuid.UUID, data: TournamentCreate, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Tournament).where(Tournament.id == tournament_id))
+    tournament = result.scalar_one_or_none()
+    if not tournament:
+        raise HTTPException(404, "Tournament not found")
+    tournament.name = data.name
+    tournament.game = data.game
+    tournament.format = data.format
+    await db.commit()
+    await db.refresh(tournament)
+    return tournament
+
+
 @app.delete("/api/tournaments/{tournament_id}")
 async def delete_tournament(tournament_id: uuid.UUID, db: AsyncSession = Depends(get_db)):
     result = await db.execute(select(Tournament).where(Tournament.id == tournament_id))
@@ -405,8 +419,12 @@ async def tournament_ws(websocket: WebSocket, tournament_id: str):
 @app.post("/api/seed")
 async def seed_data(db: AsyncSession = Depends(get_db)):
     """Seed a tournament with 6 teams for demo purposes."""
+    # Sequential number based on existing tournaments
+    count = await db.execute(select(func.count(Tournament.id)))
+    seq = count.scalar() + 1
+
     # Create tournament
-    t = Tournament(name="G-SITE Warzone Showdown", game="Call of Duty", format="Trios Custom", num_matches=3)
+    t = Tournament(name=f"Tournament #{seq}", game="Call of Duty", format="Trios Custom", num_matches=3)
     db.add(t)
     await db.flush()
 

@@ -12,6 +12,8 @@ export default function AdminDashboard() {
   const [matches, setMatches] = useState([]);
   const [activeTab, setActiveTab] = useState("results");
   const [selectedMatch, setSelectedMatch] = useState(null);
+  const [editingName, setEditingName] = useState(false);
+  const [nameInput, setNameInput] = useState("");
 
   const load = async () => {
     const [t, te, m] = await Promise.all([
@@ -58,9 +60,45 @@ export default function AdminDashboard() {
             <div className="text-gsite-muted text-sm uppercase tracking-wider mb-1">
               Admin Panel
             </div>
-            <h1 className="font-display font-bold text-3xl text-white">
-              {tournament.name}
-            </h1>
+            {editingName ? (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  if (nameInput.trim()) {
+                    await api.updateTournament(tournamentId, {
+                      name: nameInput.trim(),
+                      game: tournament.game,
+                      format: tournament.format,
+                    });
+                    await load();
+                  }
+                  setEditingName(false);
+                }}
+                className="flex items-center gap-2"
+              >
+                <input
+                  type="text"
+                  value={nameInput}
+                  onChange={(e) => setNameInput(e.target.value)}
+                  autoFocus
+                  onBlur={() => setEditingName(false)}
+                  className="font-display font-bold text-3xl text-white bg-gsite-bg border border-gsite-border rounded-lg px-3 py-1 focus:outline-none focus:border-gsite-cyan"
+                />
+              </form>
+            ) : (
+              <h1
+                className="font-display font-bold text-3xl text-white cursor-pointer hover:text-gsite-cyan transition-colors group flex items-center gap-2"
+                onClick={() => {
+                  setNameInput(tournament.name);
+                  setEditingName(true);
+                }}
+              >
+                {tournament.name}
+                <svg className="w-4 h-4 text-gsite-muted opacity-0 group-hover:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z" />
+                </svg>
+              </h1>
+            )}
             <p className="text-gsite-muted mt-1">
               {tournament.game} — {tournament.format} — {tournament.num_matches}{" "}
               Matches

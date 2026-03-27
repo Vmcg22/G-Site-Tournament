@@ -15,6 +15,7 @@ export default function TopFraggersPage() {
   const [tournament, setTournament] = useState(null);
   const [fraggers, setFraggers] = useState([]);
   const [matches, setMatches] = useState([]);
+  const [lastUpdate, setLastUpdate] = useState(null);
   const wsRef = useRef(null);
 
   const load = async () => {
@@ -26,6 +27,7 @@ export default function TopFraggersPage() {
     setTournament(t);
     setFraggers(f);
     setMatches(m);
+    setLastUpdate(new Date());
   };
 
   useEffect(() => {
@@ -34,7 +36,10 @@ export default function TopFraggersPage() {
     wsRef.current = connectWS(tournamentId, (msg) => {
       if (msg.type === "leaderboard_update") {
         // Reload fraggers on any update
-        api.getTopFraggers(tournamentId).then(setFraggers);
+        api.getTopFraggers(tournamentId).then((f) => {
+          setFraggers(f);
+          setLastUpdate(new Date());
+        });
       }
     });
 
@@ -78,6 +83,11 @@ export default function TopFraggersPage() {
           </div>
         )}
 
+        {lastUpdate && (
+          <div className="text-gsite-muted/50 text-xs mt-3">
+            Updated {lastUpdate.toLocaleTimeString()}
+          </div>
+        )}
       </div>
 
       {/* Cards Grid */}

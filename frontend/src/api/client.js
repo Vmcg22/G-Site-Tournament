@@ -19,6 +19,8 @@ export const api = {
   createTournament: (data) =>
     request("/api/tournaments", { method: "POST", body: JSON.stringify(data) }),
   getTournament: (id) => request(`/api/tournaments/${id}`),
+  updateTournament: (id, data) =>
+    request(`/api/tournaments/${id}`, { method: "PUT", body: JSON.stringify(data) }),
   deleteTournament: (id) =>
     request(`/api/tournaments/${id}`, { method: "DELETE" }),
 
