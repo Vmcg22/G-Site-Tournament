@@ -35,7 +35,7 @@ export default function ConfirmModal({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Top accent */}
-        <div className="h-1 bg-gradient-to-r from-red-500 via-gsite-accent to-red-500" />
+        <div className="h-1 bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 
         <div className="p-6">
           {/* Icon */}

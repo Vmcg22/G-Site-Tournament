@@ -27,8 +27,8 @@ export default function Landing() {
       <div
         className="absolute inset-0 opacity-[0.03]"
         style={{
-          backgroundImage: `linear-gradient(rgba(244,63,94,0.5) 1px, transparent 1px),
-                            linear-gradient(90deg, rgba(244,63,94,0.5) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)`,
           backgroundSize: "60px 60px",
         }}
       />

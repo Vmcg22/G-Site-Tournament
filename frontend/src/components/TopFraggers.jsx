@@ -33,17 +33,17 @@ export default function TopFraggers({ tournamentId }) {
   }
 
   const medalColors = [
-    "from-yellow-400 to-amber-600",
+    "from-white to-gray-400",
     "from-gray-300 to-gray-500",
-    "from-amber-600 to-amber-800",
+    "from-gray-500 to-gray-700",
     "from-gsite-border to-gsite-muted",
     "from-gsite-border to-gsite-muted",
   ];
 
   const bgColors = [
-    "bg-yellow-500/5 border-yellow-500/20",
-    "bg-gray-400/5 border-gray-400/20",
-    "bg-amber-600/5 border-amber-600/20",
+    "bg-white/5 border-white/20",
+    "bg-gray-400/5 border-gray-400/15",
+    "bg-gray-500/5 border-gray-500/15",
     "bg-gsite-card border-gsite-border",
     "bg-gsite-card border-gsite-border",
   ];
@@ -80,7 +80,7 @@ export default function TopFraggers({ tournamentId }) {
               <div className="flex items-center gap-2">
                 <span
                   className={`font-display font-semibold truncate ${
-                    i === 0 ? "text-yellow-400 text-lg" : "text-white"
+                    i === 0 ? "text-white text-lg" : "text-gsite-text"
                   }`}
                 >
                   {player.player_name}

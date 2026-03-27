@@ -3,11 +3,11 @@ import { useParams, Link } from "react-router-dom";
 import { api, connectWS } from "../api/client";
 
 const RANK_COLORS = [
-  { main: "#f43f5e", light: "rgba(244,63,94,0.15)", text: "text-rose-400", border: "border-rose-500/50", glow: "shadow-[0_0_30px_rgba(244,63,94,0.3)]" },
-  { main: "#06b6d4", light: "rgba(6,182,212,0.15)", text: "text-cyan-400", border: "border-cyan-500/50", glow: "" },
-  { main: "#a78bfa", light: "rgba(167,139,250,0.15)", text: "text-violet-400", border: "border-violet-500/50", glow: "" },
-  { main: "#fbbf24", light: "rgba(251,191,36,0.15)", text: "text-amber-400", border: "border-amber-500/50", glow: "" },
-  { main: "#22c55e", light: "rgba(34,197,94,0.15)", text: "text-green-400", border: "border-green-500/50", glow: "" },
+  { main: "#ffffff", light: "rgba(255,255,255,0.12)", text: "text-white", border: "border-white/50", glow: "shadow-[0_0_30px_rgba(255,255,255,0.2)]" },
+  { main: "#c6c6c6", light: "rgba(198,198,198,0.10)", text: "text-gray-300", border: "border-gray-400/40", glow: "" },
+  { main: "#969696", light: "rgba(150,150,150,0.10)", text: "text-gray-400", border: "border-gray-500/40", glow: "" },
+  { main: "#696969", light: "rgba(105,105,105,0.10)", text: "text-gray-500", border: "border-gray-600/40", glow: "" },
+  { main: "#4a4a4a", light: "rgba(74,74,74,0.10)", text: "text-gray-600", border: "border-gray-700/40", glow: "" },
 ];
 
 export default function TopFraggersPage() {
@@ -57,7 +57,7 @@ export default function TopFraggersPage() {
   return (
     <div className="min-h-screen flex flex-col">
       {/* Top accent bar */}
-      <div className="h-1 bg-gradient-to-r from-gsite-accent via-gsite-cyan to-gsite-accent" />
+      <div className="h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
 
       {/* Header */}
       <div className="text-center pt-10 pb-8 px-6 relative">
@@ -113,7 +113,7 @@ export default function TopFraggersPage() {
                   className={`relative flex flex-col rounded-2xl border overflow-hidden transition-all hover:scale-[1.02] ${
                     color.border
                   } ${isFirst ? color.glow : ""}`}
-                  style={{ background: "#111827" }}
+                  style={{ background: "#161616" }}
                 >
                   {/* Avatar area */}
                   <div
@@ -138,7 +138,7 @@ export default function TopFraggersPage() {
                       className="w-24 h-24 rounded-full flex items-center justify-center font-display font-bold text-4xl text-white border-3 mb-4"
                       style={{
                         borderColor: color.main,
-                        background: `linear-gradient(135deg, ${color.light}, rgba(17,24,39,0.8))`,
+                        background: `linear-gradient(135deg, ${color.light}, rgba(0,0,0,0.8))`,
                         borderWidth: "3px",
                       }}
                     >
@@ -154,7 +154,7 @@ export default function TopFraggersPage() {
                   {/* Name bar */}
                   <div
                     className={`px-4 py-3 text-center ${
-                      isFirst ? "bg-gsite-accent" : "bg-gsite-bg/80"
+                      isFirst ? "bg-white/10" : "bg-gsite-bg/80"
                     }`}
                   >
                     <span
@@ -166,7 +166,7 @@ export default function TopFraggersPage() {
                     </span>
                     {player.gamertag &&
                       player.gamertag !== player.player_name && (
-                        <div className="text-gsite-muted text-[10px] mt-0.5">
+                        <div className="text-gsite-muted/60 text-[10px] mt-0.5">
                           {player.gamertag}
                         </div>
                       )}
@@ -176,7 +176,7 @@ export default function TopFraggersPage() {
                   <div
                     className={`px-4 py-4 text-center ${
                       isFirst
-                        ? "bg-gsite-accent/80"
+                        ? "bg-white/10"
                         : "bg-gsite-bg/60 border-t border-gsite-border/30"
                     }`}
                   >
@@ -189,7 +189,7 @@ export default function TopFraggersPage() {
                     </span>
                     <div
                       className={`text-[10px] uppercase tracking-widest mt-0.5 ${
-                        isFirst ? "text-white/70" : "text-gsite-muted"
+                        isFirst ? "text-white/50" : "text-gsite-muted"
                       }`}
                     >
                       kills
@@ -203,7 +203,7 @@ export default function TopFraggersPage() {
       </div>
 
       {/* Bottom bar */}
-      <div className="h-1 bg-gradient-to-r from-gsite-accent via-gsite-cyan to-gsite-accent" />
+      <div className="h-1 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
     </div>
   );
 }
