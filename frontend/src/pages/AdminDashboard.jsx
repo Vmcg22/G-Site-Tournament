@@ -66,14 +66,24 @@ export default function AdminDashboard() {
               Matches
             </p>
           </div>
-          <a
-            href={`/leaderboard/${tournamentId}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-6 py-3 bg-gsite-cyan/10 border border-gsite-cyan/30 text-gsite-cyan font-display font-semibold rounded-xl hover:bg-gsite-cyan/20 transition-all"
-          >
-            View Leaderboard →
-          </a>
+          <div className="flex gap-3">
+            <a
+              href={`/leaderboard/${tournamentId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-gsite-cyan/10 border border-gsite-cyan/30 text-gsite-cyan font-display font-semibold rounded-xl hover:bg-gsite-cyan/20 transition-all"
+            >
+              Leaderboard →
+            </a>
+            <a
+              href={`/top-fraggers/${tournamentId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-gsite-gold/10 border border-gsite-gold/30 text-gsite-gold font-display font-semibold rounded-xl hover:bg-gsite-gold/20 transition-all"
+            >
+              Top Fraggers →
+            </a>
+          </div>
         </div>
 
         {/* Tabs */}
