@@ -108,24 +108,24 @@ export default function Tournaments() {
                     </div>
                   </div>
                   <div className="flex gap-3">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/top-fraggers/${t.id}`);
-                      }}
+                    <a
+                      href={`/top-fraggers/${t.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="px-5 py-2.5 bg-gsite-gold/10 border border-gsite-gold/30 text-gsite-gold font-display font-semibold rounded-xl hover:bg-gsite-gold/20 transition-all text-sm"
                     >
                       Top Fraggers
-                    </button>
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/leaderboard/${t.id}`);
-                      }}
+                    </a>
+                    <a
+                      href={`/leaderboard/${t.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       className="px-5 py-2.5 bg-gsite-cyan/10 border border-gsite-cyan/30 text-gsite-cyan font-display font-semibold rounded-xl hover:bg-gsite-cyan/20 transition-all text-sm"
                     >
                       Leaderboard
-                    </button>
+                    </a>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();

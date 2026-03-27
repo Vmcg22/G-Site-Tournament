@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { api, connectWS } from "../api/client";
 
 export default function Leaderboard() {
@@ -147,25 +147,9 @@ export default function Leaderboard() {
           </div>
         </div>
 
-        {/* Nav */}
-        <div className="absolute top-6 right-6 flex gap-3">
-          <Link
-            to={`/top-fraggers/${tournamentId}`}
-            className="px-4 py-2 bg-gsite-gold/10 border border-gsite-gold/30 text-gsite-gold font-display font-semibold rounded-xl hover:bg-gsite-gold/20 transition-all text-sm"
-          >
-            Top Fraggers
-          </Link>
-          <Link
-            to={`/admin/${tournamentId}`}
-            className="px-4 py-2 border border-gsite-border text-gsite-muted hover:text-white rounded-xl text-sm transition-colors"
-          >
-            Admin
-          </Link>
-        </div>
-
         {lastUpdate && (
-          <div className="absolute top-6 left-6 text-gsite-muted text-xs">
-            Last update: {lastUpdate.toLocaleTimeString()}
+          <div className="text-gsite-muted/50 text-xs mt-3">
+            Updated {lastUpdate.toLocaleTimeString()}
           </div>
         )}
       </div>

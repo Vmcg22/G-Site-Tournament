@@ -7,7 +7,13 @@ export default function MatchReportForm({ match, teams, onSubmit }) {
   const [feedback, setFeedback] = useState(null);
   const [errors, setErrors] = useState([]);
 
-  // Reset form when match changes — only show existing data for THIS match
+  // Reset form when switching to a different match
+  useEffect(() => {
+    setFeedback(null);
+    setErrors([]);
+  }, [match.id]);
+
+  // Sync form with match data (including after submit refresh)
   useEffect(() => {
     setResults(
       teams.map((t) => {
@@ -20,9 +26,7 @@ export default function MatchReportForm({ match, teams, onSubmit }) {
         };
       })
     );
-    setFeedback(null);
-    setErrors([]);
-  }, [match.id, teams]);
+  }, [match.id, match.results, teams]);
 
   const maxPlacement = teams.length;
 

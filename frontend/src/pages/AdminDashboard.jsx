@@ -22,7 +22,13 @@ export default function AdminDashboard() {
     setTournament(t);
     setTeams(te);
     setMatches(m);
-    if (!selectedMatch && m.length > 0) setSelectedMatch(m[0]);
+    if (!selectedMatch && m.length > 0) {
+      const unlocked = m.find((x) => !x.is_locked);
+      setSelectedMatch(unlocked || m[0]);
+    } else if (selectedMatch) {
+      const updated = m.find((x) => x.id === selectedMatch.id);
+      if (updated) setSelectedMatch(updated);
+    }
   };
 
   useEffect(() => {
@@ -60,12 +66,14 @@ export default function AdminDashboard() {
               Matches
             </p>
           </div>
-          <Link
-            to={`/leaderboard/${tournamentId}`}
+          <a
+            href={`/leaderboard/${tournamentId}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="px-6 py-3 bg-gsite-cyan/10 border border-gsite-cyan/30 text-gsite-cyan font-display font-semibold rounded-xl hover:bg-gsite-cyan/20 transition-all"
           >
             View Leaderboard →
-          </Link>
+          </a>
         </div>
 
         {/* Tabs */}

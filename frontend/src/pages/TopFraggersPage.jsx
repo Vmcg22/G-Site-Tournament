@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { api, connectWS } from "../api/client";
 
 const RANK_COLORS = [
@@ -78,21 +78,6 @@ export default function TopFraggersPage() {
           </div>
         )}
 
-        {/* Nav */}
-        <div className="absolute top-6 right-6 flex gap-3">
-          <Link
-            to={`/leaderboard/${tournamentId}`}
-            className="px-4 py-2 bg-gsite-cyan/10 border border-gsite-cyan/30 text-gsite-cyan font-display font-semibold rounded-xl hover:bg-gsite-cyan/20 transition-all text-sm"
-          >
-            Standings
-          </Link>
-          <Link
-            to={`/admin/${tournamentId}`}
-            className="px-4 py-2 border border-gsite-border text-gsite-muted hover:text-white rounded-xl text-sm transition-colors"
-          >
-            Admin
-          </Link>
-        </div>
       </div>
 
       {/* Cards Grid */}
