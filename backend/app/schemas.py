@@ -9,6 +9,9 @@ class TournamentCreate(BaseModel):
     game: str = "Call of Duty"
     format: str = "Trios Custom"
     num_matches: int = 3
+    prize_pool: str | None = None
+    event_date: str | None = None
+    contact: str | None = None
 
 
 class TournamentOut(BaseModel):
@@ -17,6 +20,9 @@ class TournamentOut(BaseModel):
     game: str
     format: str
     num_matches: int
+    prize_pool: str | None
+    event_date: str | None
+    contact: str | None
     status: str
 
     model_config = {"from_attributes": True}
@@ -90,6 +96,7 @@ class LeaderboardEntry(BaseModel):
     rank: int
     team_id: uuid.UUID
     team_name: str
+    players: list[str] = []
     total_kills: int
     placement_points: int
     total_score: int

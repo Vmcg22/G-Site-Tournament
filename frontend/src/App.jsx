@@ -4,6 +4,7 @@ import Tournaments from "./pages/Tournaments";
 import AdminDashboard from "./pages/AdminDashboard";
 import Leaderboard from "./pages/Leaderboard";
 import TopFraggersPage from "./pages/TopFraggersPage";
+import Flyer from "./pages/Flyer";
 import Navbar from "./components/Navbar";
 
 export default function App() {
@@ -18,6 +19,7 @@ export default function App() {
         {/* Full-screen display pages — no navbar */}
         <Route path="/leaderboard/:tournamentId" element={<Leaderboard />} />
         <Route path="/top-fraggers/:tournamentId" element={<TopFraggersPage />} />
+        <Route path="/flyer/:tournamentId" element={<Flyer />} />
       </Routes>
     </BrowserRouter>
   );

@@ -14,6 +14,9 @@ class Tournament(Base):
     game: Mapped[str] = mapped_column(String(100), default="Call of Duty")
     format: Mapped[str] = mapped_column(String(100), default="Trios Custom")
     num_matches: Mapped[int] = mapped_column(Integer, default=3)
+    prize_pool: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    event_date: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    contact: Mapped[str | None] = mapped_column(String(255), nullable=True)
     status: Mapped[str] = mapped_column(String(20), default="active")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 

@@ -73,6 +73,9 @@ async def update_tournament(tournament_id: uuid.UUID, data: TournamentCreate, db
     tournament.name = data.name
     tournament.game = data.game
     tournament.format = data.format
+    tournament.prize_pool = data.prize_pool
+    tournament.event_date = data.event_date
+    tournament.contact = data.contact
     await db.commit()
     await db.refresh(tournament)
     return tournament
@@ -294,9 +297,12 @@ async def toggle_dispute(result_id: uuid.UUID, db: AsyncSession = Depends(get_db
 # ──────────────────────── Leaderboard ───────────────────────────
 
 async def _build_leaderboard(tournament_id: uuid.UUID, db: AsyncSession) -> list[LeaderboardEntry]:
-    # Get all teams for this tournament
+    # Get all teams with players for this tournament
     teams_result = await db.execute(
-        select(Team).where(Team.tournament_id == tournament_id).order_by(Team.name)
+        select(Team)
+        .options(selectinload(Team.players))
+        .where(Team.tournament_id == tournament_id)
+        .order_by(Team.name)
     )
     teams = teams_result.scalars().all()
 
@@ -317,6 +323,7 @@ async def _build_leaderboard(tournament_id: uuid.UUID, db: AsyncSession) -> list
             rank=0,
             team_id=team.id,
             team_name=team.name,
+            players=[p.name for p in team.players],
             total_kills=total_kills,
             placement_points=placement_points,
             total_score=total_score,

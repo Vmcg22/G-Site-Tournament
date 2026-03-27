@@ -7,6 +7,9 @@ CREATE TABLE tournaments (
     game VARCHAR(100) NOT NULL DEFAULT 'Call of Duty',
     format VARCHAR(100) NOT NULL DEFAULT 'Trios Custom',
     num_matches INTEGER NOT NULL DEFAULT 3,
+    prize_pool VARCHAR(100),
+    event_date VARCHAR(100),
+    contact VARCHAR(255),
     status VARCHAR(20) NOT NULL DEFAULT 'active',
     created_at TIMESTAMP DEFAULT NOW()
 );

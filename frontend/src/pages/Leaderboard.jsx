@@ -98,6 +98,11 @@ export default function Leaderboard() {
                 </span>
               )}
             </div>
+            {entry.players?.length > 0 && (
+              <div className="text-gsite-muted/70 text-xs mt-0.5">
+                {entry.players.join(" · ")}
+              </div>
+            )}
             <div className="text-gsite-muted text-xs mt-0.5">
               {entry.total_kills} kills — {entry.placement_points} plc pts —{" "}
               {entry.matches_played} played

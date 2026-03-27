@@ -49,6 +49,7 @@ export default function AdminDashboard() {
     { id: "results", label: "Report Results" },
     { id: "teams", label: "Teams" },
     { id: "history", label: "Match History" },
+    { id: "settings", label: "Settings" },
   ];
 
   return (
@@ -69,6 +70,9 @@ export default function AdminDashboard() {
                       name: nameInput.trim(),
                       game: tournament.game,
                       format: tournament.format,
+                      prize_pool: tournament.prize_pool,
+                      event_date: tournament.event_date,
+                      contact: tournament.contact,
                     });
                     await load();
                   }
@@ -190,6 +194,103 @@ export default function AdminDashboard() {
         {activeTab === "history" && (
           <MatchHistory matches={matches} onUpdate={load} />
         )}
+
+        {activeTab === "settings" && (
+          <TournamentSettings tournament={tournament} tournamentId={tournamentId} onUpdate={load} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function TournamentSettings({ tournament, tournamentId, onUpdate }) {
+  const [form, setForm] = useState({
+    name: tournament.name || "",
+    game: tournament.game || "Call of Duty",
+    format: tournament.format || "Trios Custom",
+    prize_pool: tournament.prize_pool || "",
+    event_date: tournament.event_date || "",
+    contact: tournament.contact || "",
+  });
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  const handleChange = (field, value) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+    setSaved(false);
+  };
+
+  const handleSave = async () => {
+    setSaving(true);
+    await api.updateTournament(tournamentId, {
+      ...form,
+      prize_pool: form.prize_pool || null,
+      event_date: form.event_date || null,
+      contact: form.contact || null,
+    });
+    await onUpdate();
+    setSaving(false);
+    setSaved(true);
+  };
+
+  const fields = [
+    { key: "name", label: "Tournament Name", placeholder: "e.g. G-SITE Warzone Showdown" },
+    { key: "game", label: "Game", placeholder: "e.g. Call of Duty" },
+    { key: "format", label: "Format", placeholder: "e.g. Trios Custom" },
+    { key: "prize_pool", label: "Prize Pool", placeholder: "e.g. $500 USD" },
+    { key: "event_date", label: "Date / Time", placeholder: "e.g. April 5, 2026 — 7:00 PM EST" },
+    { key: "contact", label: "Contact / Registration", placeholder: "e.g. Discord: discord.gg/gsite or @GSITEGG on X" },
+  ];
+
+  return (
+    <div className="max-w-2xl">
+      <div className="bg-gsite-card border border-gsite-border rounded-2xl overflow-hidden">
+        <div className="px-6 py-4 border-b border-gsite-border">
+          <h3 className="font-display font-bold text-lg text-white">
+            Tournament Settings
+          </h3>
+          <p className="text-gsite-muted text-sm mt-0.5">
+            Configure tournament details shown on the flyer and display views.
+          </p>
+        </div>
+
+        <div className="p-6 space-y-4">
+          {fields.map((f) => (
+            <div key={f.key}>
+              <label className="text-gsite-muted text-xs uppercase tracking-wider block mb-2">
+                {f.label}
+              </label>
+              <input
+                type="text"
+                value={form[f.key]}
+                onChange={(e) => handleChange(f.key, e.target.value)}
+                placeholder={f.placeholder}
+                className="w-full bg-gsite-bg border border-gsite-border rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gsite-cyan transition-colors"
+              />
+            </div>
+          ))}
+
+          <div className="flex items-center gap-4 pt-2">
+            <button
+              onClick={handleSave}
+              disabled={saving}
+              className="px-8 py-3 bg-gsite-accent hover:bg-gsite-accentHover text-white font-display font-bold rounded-xl transition-all disabled:opacity-50"
+            >
+              {saving ? "Saving..." : "Save Settings"}
+            </button>
+            <a
+              href={`/flyer/${tournamentId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-3 bg-gsite-cyan/10 border border-gsite-cyan/30 text-gsite-cyan font-display font-semibold rounded-xl hover:bg-gsite-cyan/20 transition-all"
+            >
+              View Flyer →
+            </a>
+            {saved && (
+              <span className="text-green-400 text-sm">Settings saved</span>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
