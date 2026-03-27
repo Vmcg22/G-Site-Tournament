@@ -11,9 +11,9 @@ docker compose up --build
 ```
 
 - **Live Demo:** http://31.220.20.173:5175
-- **Frontend (local):** http://localhost:5175
-- **Backend API:** http://localhost:8002
-- **API Docs:** http://localhost:8002/docs
+- **Frontend:** http://31.220.20.173:5175
+- **Backend API:** http://31.220.20.173:8002
+- **API Docs:** http://31.220.20.173:8002/docs
 
 Click "Register Now" on the landing page to seed demo data (6 teams, 3 matches), or use the API directly.
 
