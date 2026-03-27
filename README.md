@@ -10,7 +10,8 @@ A lightweight tournament operations system for a Call of Duty custom tournament 
 docker compose up --build
 ```
 
-- **Frontend:** http://localhost:5175
+- **Live Demo:** http://31.220.20.173:5175
+- **Frontend (local):** http://localhost:5175
 - **Backend API:** http://localhost:8002
 - **API Docs:** http://localhost:8002/docs
 
